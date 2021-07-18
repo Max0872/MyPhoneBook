@@ -1,5 +1,6 @@
 package application;
 
+import models.User;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
@@ -19,6 +20,11 @@ public class UserHelper extends HelperBase{
         type(By.xpath("//*[@placeholder='Email']"), "maxmay0872@gmail.com");
         type(By.xpath("//*[@placeholder='Password']"),"123456$Max");
     }
+    public void fillLoginForm(User user) {
+        type(By.xpath("//*[@placeholder='Email']"), user.getEmail());
+        type(By.xpath("//*[@placeholder='Password']"), user.getPassword());
+    }
+
 
 
     public void submitLogin() {
