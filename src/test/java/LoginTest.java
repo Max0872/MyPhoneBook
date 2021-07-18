@@ -1,9 +1,16 @@
 import org.openqa.selenium.By;
 import org.testng.Assert;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 public class LoginTest extends TestBase {
 
+    @BeforeMethod
+    public void precondition(){
+        if(!app.getUserHelper().isLogin()){
+            app.getUserHelper().logout();
+        }
+    }
     @Test
     public void loginPositiveTest(){
 
