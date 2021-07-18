@@ -1,3 +1,4 @@
+import application.ApplicationManager;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -10,30 +11,29 @@ import java.nio.file.Watchable;
 import java.util.concurrent.TimeUnit;
 
 public class TestBase {
+  protected static ApplicationManager app = new ApplicationManager();
 
     WebDriver wd;
 
     @BeforeClass
     public void init(){
-        wd = new ChromeDriver();
-        wd.manage().window().maximize();
-        wd.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-        wd.navigate().to("https://contacts-app.tobbymarshall815.vercel.app/home");
+       app.init();
+
     }
     @AfterClass
     public void tearDown(){
-        wd.quit();
+        app.stop();
     }
 
-    public void click(By locator){
-        wd.findElement(locator).click();
-    }
-    public void type(By locator,String text){
-        if(text!=null) {
-            WebElement element = wd.findElement(locator);
-            element.click();
-            element.clear();
-            element.sendKeys(text);
-        }
-    }
+//    public void click(By locator){
+//        wd.findElement(locator).click();
+//    }
+//    public void type(By locator,String text){
+//        if(text!=null) {
+//            WebElement element = wd.findElement(locator);
+//            element.click();
+//            element.clear();
+//            element.sendKeys(text);
+//        }
+//    }
 }
